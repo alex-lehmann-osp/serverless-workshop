@@ -360,13 +360,13 @@ To reach level 1, you'll need to learn about the following topics:
 1. Navigate to the Terraform module
 
    ```shell
-   cp -r level-1/function my-tf-module
+   cp -r function/ advanced/terraform/
    ```
 
 1. Navigate to your work directory
 
    ```shell
-   pushd my-tf-module
+   pushd advanced/terraform/
    ```
 
 1. Apply the Terraform module again
@@ -378,19 +378,19 @@ To reach level 1, you'll need to learn about the following topics:
 1. Invoke the function with a test event:
 
    ```shell
-   aws lambda invoke --function-name "my-function-tf-${TF_VAR_aws_user}" --cli-binary-format raw-in-base64-out --payload '{ "name": "Bob" }' output.json --log-type Tail
+   aws lambda invoke --function-name "my-function-logged-tf-${TF_VAR_aws_user}" --cli-binary-format raw-in-base64-out --payload '{ "name": "Bob" }' output.json --log-type Tail
    ```
 
 1. Find the latest log stream for your function in CloudWatch:
 
    ```shell
-   aws logs describe-log-streams --log-group-name "/aws/lambda/my-function-tf-${TF_VAR_aws_user}"
+   aws logs describe-log-streams --log-group-name "/aws/lambda/my-function-logged-tf-${TF_VAR_aws_user}"
    ```
 
 1. Inspect the log events of the log stream:
 
    ```shell
-   aws logs get-log-events --log-group-name "/aws/lambda/my-function-tf-${TF_VAR_aws_user}" --log-stream-name=<name of latest log stream>
+   aws logs get-log-events --log-group-name "/aws/lambda/my-function-logged-tf-${TF_VAR_aws_user}" --log-stream-name=<name of latest log stream>
    ```
 
 1. Navigate back to the workshop repo
